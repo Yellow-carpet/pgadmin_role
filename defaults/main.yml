@@ -1,0 +1,15 @@
+---
+# defaults file for pgadmin_role
+#
+#
+#### servers.json variables
+host_db: 172.31.82.22
+port_db: 5432 
+maintenanceDB: postgres 
+username_db: odoo
+
+#### pgadmin docker-compose variables
+pgadmin_email: pgadmin@pgadmin.com
+pgadmin_pass: pgadmin
+pgadmin_port: 5050
+

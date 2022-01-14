@@ -1,0 +1,12 @@
+version: "3.3"
+services:
+  pgadmin:
+     image: dpage/pgadmin4
+     restart: always
+     environment:
+       PGADMIN_DEFAULT_EMAIL: {{ pgadmin_email }} #the username to login to pgadmin
+       PGADMIN_DEFAULT_PASSWORD: {{ pgadmin_pass }} # the password to login to pgadmin
+     ports:
+       - "{{ pgadmin_port }}:80"
+     volumes:
+       - ./servers.json:/pgadmin4/servers.json # preconfigured servers/connections
