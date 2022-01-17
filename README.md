@@ -11,7 +11,7 @@ Pour tester ce rôle il faudra utiliser un autre rôle qui installera un docker-
 
 Role Variables
 --------------
-- variables servers :\
+- variables servers.json :\
 **host_db:** ip de la bdd \
 **port_db:** port de la bdd \
 **maintenanceDB:** represente la bdd initiale où se connecte notre pgadmin (une fois connecté à cette bdd, nous avons accès à toutes les autres qui sont dans le même serveur) \
