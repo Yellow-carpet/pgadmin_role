@@ -1,32 +1,44 @@
 Role Name
 =========
 
-A brief description of the role goes here.
+Ce role a pour but de créer un conteneur pgadmin qui est relié à une bdd (il faudra bien sur s'assurer que le conteneur de la bdd est up). \
+Deux fichiers sont très importants dans ce rôle, le fichier de création du conteneur du pgadmin et le fichier servers.json qui nous permettra de nous connecter à la bdd. 
 
 Requirements
 ------------
 
-Any pre-requisites that may not be covered by Ansible itself or the role should be mentioned here. For instance, if the role uses the EC2 module, it may be a good idea to mention in this section that the boto package is required.
+Pour tester ce rôle il faudra utiliser un autre rôle qui installera un docker-compose (le rôle se créer à partir d'un fichier template qui est un docker-compose). 
 
 Role Variables
 --------------
+- variables servers :\
+**host_db:** ip de la bdd \
+**port_db:** port de la bdd \
+**maintenanceDB:** represente la bdd initiale où se connecte notre pgadmin (une fois connecté à cette bdd, nous avons accès à toutes les autres qui sont dans le même serveur) \
+**username_db:** nom d'utilsateur de la bdd
 
-A description of the settable variables for this role should go here, including any variables that are in defaults/main.yml, vars/main.yml, and any variables that can/should be set via parameters to the role. Any variables that are read from other roles and/or the global scope (ie. hostvars, group vars, etc.) should be mentioned here as well.
+- variables de pgadmin : \
+**pgadmin_email:** email de pgadmin \
+**pgadmin_pass:** mot de passe de pgadmin \
+**pgadmin_port:** port de pgadmin 
 
 Dependencies
 ------------
 
-A list of other roles hosted on Galaxy should go here, plus any details in regards to parameters that may need to be set for other roles, or variables that are used from other roles.
+Ce role a besoin d'un autre role pour installer docker-compose, ici, j'utilise le role de : lianhuahayu.docker_role
 
 Example Playbook
 ----------------
 
-Including an example of how to use your role (for instance, with variables passed in as parameters) is always nice for users too:
+Un exemple de playbook de test est disponible dans le dossier test, voici un petit aperçu : 
 
-    - hosts: servers
+    - hosts: localhost
+      connection: local
+      become: yes
       roles:
-         - { role: username.rolename, x: 42 }
-
+         - lianhuahayu.docker_role
+         - pgadmin_role
+         
 License
 -------
 
